@@ -1,12 +1,8 @@
 {
-  "name": "Docker in Docker (DinD) with Node.js 18",
+  "name": "Dev container",
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "mounts": [
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
-    "source=/usr/bin/docker,target=/usr/bin/docker,type=bind"
-  ],
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
   },

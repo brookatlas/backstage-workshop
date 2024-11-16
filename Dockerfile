@@ -1,16 +1,25 @@
-# Use the Docker in Docker image as the base
-FROM docker:20.10-dind
+# Use a Debian base image
+FROM debian:bullseye-slim
 
-# Install dependencies and Node.js 18 LTS
-RUN apk update && apk add --no-cache \
+# Set non-interactive mode to avoid prompting during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update the package list and install dependencies
+RUN apt-get update && apt-get install -y \
     curl \
-    bash \
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apk add --no-cache nodejs=18.* npm \
-    && rm -rf /var/cache/apk/*
+    git \
+    gnupg \
+    lsb-release \
+    ca-certificates \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# Set default shell to bash
-SHELL ["/bin/bash", "-c"]
+# Install Node.js (adjust to desired version)
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
 
-# Verify installation
-RUN node --version && npm --version
+# Install additional dependencies for WebStorm or other IDE tools
+# (Optional: install any additional packages your project needs)
+
+#
