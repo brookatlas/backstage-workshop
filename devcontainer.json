@@ -1,0 +1,22 @@
+{
+  "name": "Docker in Docker (DinD) with Node.js 18",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    "source=/usr/bin/docker,target=/usr/bin/docker,type=bind"
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "postCreateCommand": "node --version && npm --version && docker info",
+  "remoteUser": "root",
+  "extensions": [
+    "ms-vscode.remote-containers"
+  ],
+  "runArgs": [
+    "--privileged",
+    "--name", "dind-container"
+  ]
+}
