@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     lsb-release \
     ca-certificates \
     build-essential \
+    postgresql \
+    postgresql-contrib \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js (adjust to desired version)
@@ -19,7 +21,10 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Install additional dependencies for WebStorm or other IDE tools
-# (Optional: install any additional packages your project needs)
+# Install Yarn
+RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | tee /etc/apt/trusted.gpg.d/yarn.asc
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install -y yarn && rm -rf /var/lib/apt/lists/*
 
-#
+# Set default command for the container to start PostgreSQL and Node.js
+CMD ["bash"]
