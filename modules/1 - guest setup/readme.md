@@ -43,5 +43,5 @@ yarn dev
 ```
 yarn workspace backend start
 ```
-5. your backstage guest app should be running with guest authentication!
+5. your backstage guest app should be running with guest authentication! open it at: localhost:3000
 ![Alt text](up-and-running.png)
