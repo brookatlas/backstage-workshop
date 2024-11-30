@@ -31,11 +31,17 @@ backend:
     host: 0.0.0.0
 ```
 
-2. go to the backstage folder and run "yarn dev":
+2. go to the backstage folder
 ```
 cd <my-backstage-app-name>
+```
+3. run the frontend:
+```
 yarn dev
 ```
-
-3. your backstage guest app should be running with guest authentication!
+4. in another terminal, in the same folder, run the backend:
+```
+yarn workspace backend start
+```
+5. your backstage guest app should be running with guest authentication! open it at: localhost:3000
 ![Alt text](up-and-running.png)
