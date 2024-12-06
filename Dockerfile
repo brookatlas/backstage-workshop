@@ -26,5 +26,9 @@ RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | tee /etc/apt/trusted.gpg
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y yarn && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /app
+# Install Backstage basic app
+RUN cd /app && printf "backstage\n" | npx @backstage/create-app@latest
+
 # Set default command for the container to start PostgreSQL and Node.js
 CMD ["bash"]
