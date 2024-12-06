@@ -16,7 +16,7 @@
 	
 
 	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "cat /etc/os-release",
+	"postCreateCommand": "cd /workspaces/backstage-workshop && printf \"backstage\n\" | npx @backstage/create-app@latest"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
